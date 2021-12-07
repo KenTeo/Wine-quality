@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    {% for message in get_flashed_messages() %}
+        <p class="text-center font-weight-bold">{{ message }}</p>
+    {% endfor %}
+    <h1 class="text-center">Home page of {{session.username}}!! <br> Past predictions are shown below. </h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Date</th><th>Fixed Acidity</th><th>Volatile Acidity</th><th>Citric Acid</th>
+            <th>Free Sulfur Dioxide</th><th>Total Sulfur Dioxide</th><th>Density</th><th>pH</th>
+            <th>Sulphates</th><th>Alcohol</th><th>Predicted Quality</th>
+        </tr>
+        {% for row in wine_list %}
+        <tr>
+            {% if row[0] == session.username %}
+                {% for cell in row[1:] %}
+                <td>{{cell}}</td>
+                {% endfor %}
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

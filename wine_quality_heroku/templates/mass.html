@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Mass Prediction{% endblock %}
+{% block head %}
+        <link rel="stylesheet" href="static/styles.css"/>
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+
+      <h1 class="flash text-center">Mass red wine quality prediction (csv file)</h1><br>
+
+      <img src="/static/input.png" class="img-fluid" alt="Reference">
+      <p class="font-italic">*The image above is a template for creating a CSV data file with the required wine properties for the prediction of the wine quality.<br>
+        The CSV data file can be created with excel, libreoffice Calc or similar programs and save as a CSV format file.(filename.csv) <br>
+        Ensure that the column names are correct and all values for each sample is filled before uploading.</p><br>
+
+      <form action="/mass" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label>Select file</label>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="customFile" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </form>
+      <p>{{ msg }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
